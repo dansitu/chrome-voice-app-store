@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Voice App Store",
+  "description": "The gateway to a multitude of voice-powered micro-apps within Google Chrome.",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_title": "Voice App Store"
+  },
+
+  "background": {
+    "scripts": ["eventPage.js"],
+    "persistent": false
+  },
+
+  "commands": {
+    "listen-for-speech": {
+      "default": "Ctrl+."
+    },
+    "description": "Listen for a spoken command"
+  }
+}
+
