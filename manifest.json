@@ -16,9 +16,15 @@
 
   "commands": {
     "listen-for-speech": {
-      "default": "Ctrl+."
-    },
-    "description": "Listen for a spoken command"
-  }
+      "suggested_key": {
+        "default": "Ctrl+Shift+M"
+      },
+      "description": "Listen for a spoken command"
+    }
+  },
+
+  "permissions": [
+    "experimental"
+  ]
 }
 
