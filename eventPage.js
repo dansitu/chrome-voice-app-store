@@ -18,6 +18,7 @@ function recordingStarted(){
     return;
   }
   console.log("started listening");
+  setStartIcon();
 }
 
 function recognitionSucceeded(result){
@@ -34,13 +35,15 @@ function soundStarted(){
 
 function soundEnded(){
   console.log("sound ended");
-  chrome.experimental.speechInput.isRecording(function(isRecording){
-    if(isRecording){
-      console.log("finished listening");
-      chrome.experimental.speechInput.stop();
-    }
-  });
-  
+  setStopIcon();
+}
+
+function setStartIcon() {
+  chrome.browserAction.setIcon({ path: "start.png" });
+}
+
+function setStopIcon() {
+  chrome.browserAction.setIcon({ path: "stop.png" });
 }
 
 chrome.experimental.speechInput.onResult.addListener(recognitionSucceeded);
