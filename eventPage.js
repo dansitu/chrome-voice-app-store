@@ -9,7 +9,9 @@ chrome.commands.onCommand.addListener(function(command){
 
 function startListening(){
   console.log("attempting to start listening");
-  chrome.experimental.speechInput.start({}, recordingStarted);
+  chrome.experimental.speechInput.start({
+    getGrammarUrl: "ABCD"
+  }, recordingStarted);
 }
 
 function recordingStarted(){
@@ -44,6 +46,33 @@ function setStartIcon() {
 
 function setStopIcon() {
   chrome.browserAction.setIcon({ path: "stop.png" });
+}
+
+function grammarUrl(){
+  var myGrammar = new Blob([getGrammar()], {
+   type: 'text/xml'});
+
+  var grammarUrl = window.URL.createObjectURL(myGrammar); 
+
+  return grammarUrl;
+}
+
+function getGrammar(){
+    return
+      '<grammar xmlns="http://www.w3.org/2001/06/grammar"'
+      +' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' 
+      +' xsi:schemaLocation="http://www.w3.org/2001/06/grammar '
+      +'http://www.w3.org/TR/speech-grammar/grammar.xsd"'
+      +' xml:lang="en-US" version="1.0">'
+
+      +'<rule id="yes">'
+      +'<one-of>'
+      +'<item>computer</item>'
+      +'<item>cat</item>'
+      +'</one-of>'
+      +'</rule> '
+      +'</grammar>';
+
 }
 
 chrome.experimental.speechInput.onResult.addListener(recognitionSucceeded);
